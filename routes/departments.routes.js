@@ -10,7 +10,7 @@ router.get('/departments', (req, res) => {
 });
 
 router.get('/departments/random', (req, res) => {
-  req.db.collection('departments').aggregate([ { $sample: { size: 1 } } ]).toArray((err, data) => {
+  req.db.collection('departments').aggregate([{$sample:{size:1}}]).toArray((err, data) => {
     if(err) res.status(500).json({ message: err });
     else res.json(data[0]);
   });
@@ -34,7 +34,7 @@ router.post('/departments', (req, res) => {
 
 router.put('/departments/:id', (req, res) => {
   const { name } = req.body;
-  req.db.collectin('departments').updateOne({_id: ObjectId(req.params.id)}, {$set: {name: name}}, err =>{
+  req.db.collection('departments').updateOne({_id: ObjectId(req.params.id)}, {$set: {name: name}}, err =>{
     if (err) res.status(500).json({message: err});
     else res.json({message: 'OK'});
   });
@@ -43,7 +43,7 @@ router.put('/departments/:id', (req, res) => {
 router.delete('/departments/:id', (req, res) => {
  req.db.collection('departments').deleteOne({_id: ObjectId(req.params.id)}, err =>{
    if (err) res.status(500).json({message: err});
- else 
+ else
   res.json({ message: 'OK' });
   });
 });

@@ -10,10 +10,10 @@ router.get('/employees', (req, res) => {
 });
 
 router.get('/employees/random', (req, res) => {
-  req.db.collection('employes').aggregate([ {$sample: {size: 1}}]).toArray((err, data) =>{
+  req.db.collection('employees').aggregate([ {$sample: {size: 1}}]).toArray((err, data) =>{
     if(err) res.status(500).json({message: err});
     else res.json(data[0]);
-  })
+  });
 });
 
 router.get('/employees/:id', (req, res) => {
@@ -42,7 +42,7 @@ router.put('/employees/:id', (req, res) => {
 router.delete('/employees/:id', (req, res) => {
   req.db.collection('employees').deleteOne({_id: ObjectId(req.params.id)}, err=>{
     if(err) res.status(500).json({message: err});
-  
+
   else res.json({ message: 'OK' });
   });
 });

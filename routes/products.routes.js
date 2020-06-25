@@ -11,10 +11,10 @@ router.get('/products', (req, res) => {
 });
 
 router.get('/products/random', (req, res) => {
-  req.db.collection('products').aggregate([{$sample: {size: 1}}].toArray((err, data)=>{
+  req.db.collection('products').aggregate([{$sample: {size: 1}}]).toArray((err, data)=>{
     if(err) res.status(500).json({message: err});
     else res.json(data[0]);
-  }));
+  });
 });
 
 router.get('/products/:id', (req, res) => {
