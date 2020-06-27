@@ -11,6 +11,7 @@ router.get('/employees', async (req, res) => {
   catch (err) {
     res.status(500).json({message: err});
   }
+
 });
 
 router.get('/employees/random', async (req, res) => {
@@ -81,6 +82,7 @@ router.put('/employees/:id', async (req, res) => {
   }
 });
 
+
 router.delete('/employees/:id', async (req, res) => {
   
   try {
@@ -98,5 +100,6 @@ router.delete('/employees/:id', async (req, res) => {
   catch(err) {
     res.status(500).json({message: err});
   }
+
 });
 module.exports = router;

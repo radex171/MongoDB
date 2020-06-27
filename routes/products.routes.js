@@ -13,6 +13,7 @@ router.get('/products', async (req, res) => {
   }
 });
 
+
 router.get('/products/random', async (req, res) => {
   
   try {
@@ -27,6 +28,7 @@ router.get('/products/random', async (req, res) => {
   catch (err) {
     res.status(500).json({ message: err});
   }
+
 });
 
 router.get('/products/:id', async (req, res) => {

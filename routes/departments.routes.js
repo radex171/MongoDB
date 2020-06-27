@@ -13,6 +13,7 @@ router.get('/departments', async (req, res)=>{
   }
 });
 
+
 router.get('/departments/random', async (req, res) => {
 
   try {
@@ -28,6 +29,7 @@ router.get('/departments/random', async (req, res) => {
 
     res.status(500).json({message: err});
   }
+
 });
 
 router.get('/departments/:id',async (req, res) => {
@@ -63,6 +65,7 @@ router.post('/departments', async (req, res) => {
 router.put('/departments/:id', async (req, res) => {
   const { name } = req.body;
 
+
   try {
 
     const dep = await(Department.findById(req.params.id));
@@ -95,6 +98,7 @@ router.delete('/departments/:id',async (req, res) => {
   catch (err) {
     res.status(500).json({message: err});
   }
+
 });
 
 module.exports = router;
