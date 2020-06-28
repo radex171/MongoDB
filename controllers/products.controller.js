@@ -5,7 +5,6 @@ exports.getAll = async (req, res) => {
   try {
     res.json(await Product.find());
   }
-
   catch (err) {
     res.status(500).json({ message: err});
   }
@@ -21,11 +20,9 @@ exports.getRandom = async (req, res) => {
     if(!prod) res.status(404).json({message: 'not Found!'});
     else res.json(prod);
   }
-
   catch (err) {
     res.status(500).json({ message: err});
   }
-
 };
 
 exports.getId = async (req, res) => {
@@ -35,7 +32,6 @@ exports.getId = async (req, res) => {
     if (!prod) res.status(404).json({message:'sorry, not found id' + (req.params.id)});
     else res.json(prod);
   }
-
   catch (err) {
     res.status(500).json({ message: err});
   }
@@ -50,7 +46,6 @@ exports.postNew = async (req, res) => {
     await newProduct.save();
     res.json({message: 'Add new product:', newProduct});
   }
-
   catch (err) {
     res.status(500).json({ message: err});
   }
@@ -66,10 +61,8 @@ exports.putUpdate = async (req, res) => {
       await Product.updateOne({_id: req.params.id}, {$set: {name: name, client: client}});
       res.json({message:'Update to:', product});
     }
-
     else res.status(404).json({message: 'not found id: ' + req.params.id })
   }
-
   catch (err) {
     res.status(500).json({ message: err});
   }
@@ -84,10 +77,8 @@ exports.delete =  async(req, res) => {
       await Product.deleteOne({_id: req.params.id});
       res.json({message: 'Delete: ', product});
     }
-
     else res.status(404).json({message: 'Sorry, not found product id:' + req.params.id});
   }
-  
   catch (err) {
     res.status(500).json({ message: err});
   }
