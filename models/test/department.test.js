@@ -34,7 +34,7 @@ describe('Department', () => {
               expect(err.errors.name).to.exist;
           });
       } 
-  })
+  });
 
   it('should throw an error when "name" have good length & is string type', ()=>{
       const cases = ['this is good string', 'its next good string'];
