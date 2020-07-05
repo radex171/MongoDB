@@ -17,16 +17,14 @@ describe('Employee', () =>{
 
     describe('Reading data', () =>{
         beforeEach(async ()=>{
-            const testEmployeeOne = new Employee({firstName: 'New', lastName: 'Employee', department: 'first'});
+            const testEmployeeOne = new Employee({firstName: 'Thomas', lastName: 'Employee', department: 'first'});
             await testEmployeeOne.save();
 
             const testEmployeeTwo = new Employee({firstName: 'next', lastName: 'employee', department: 'second'});
             await testEmployeeTwo.save();
-        });
+        
 
-        after(async () =>{
-            await Employee.deleteMany();
-        });
+        
 
         it('should return all data with "find" method', async () =>{
             const employees = await Employee.find();
@@ -36,17 +34,21 @@ describe('Employee', () =>{
         });
 
         it('should return a proper by. "firstName" with "findOne" method', async () =>{
-            const employeeFindByName = await Employee.findOne({firstName:'New'});
+            const employeeFindByName = await Employee.findOne({firstName:'Thomas'});
             const employeeFindByLastName = await Employee.findOne({lastName: 'employee'});
             const employeeFindByDepartment = await Employee.findOne({department: 'first'});
 
-            const findFirstName = 'New';
+            const findFirstName = 'Thomas';
             const findLastName = 'employee';
             const findDepartment = 'first';
             expect(employeeFindByName.firstName).to.be.equal(findFirstName);
             expect(employeeFindByLastName.lastName).to.be.equal(findLastName);
             expect(employeeFindByDepartment.department).to.be.equal(findDepartment);
-        })
+        });
+    });
+        after(async () =>{
+            await Employee.deleteMany();
+        });
     });
 
     describe('Creating data', ()=>{

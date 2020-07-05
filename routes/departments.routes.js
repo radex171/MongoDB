@@ -7,7 +7,7 @@ router.get('/departments', DepartmentController.getAll);
 router.get('/departments/random', DepartmentController.getRandom);
 router.get('/departments/:id', DepartmentController.getId);
 router.post('/departments', DepartmentController.postNew);
-router.put('/departments', DepartmentController.putUpdate);
-router.delete('/departments', DepartmentController.delete);
+router.put('/departments/:id', DepartmentController.putUpdate);
+router.delete('/departments/:id', DepartmentController.delete);
 
 module.exports = router;
