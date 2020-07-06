@@ -130,8 +130,7 @@ describe('Employee', () =>{
         });
         after(async () =>{
             await Employee.deleteMany();
-        });
-        
+        });    
     });
     after(() => {
         mongoose.models = {};
