@@ -25,7 +25,7 @@ describe('Employee', () =>{
         
 
         
-
+        });
         it('should return all data with "find" method', async () =>{
             const employees = await Employee.find();
             const expectedLength = 2;
@@ -45,7 +45,7 @@ describe('Employee', () =>{
             expect(employeeFindByLastName.lastName).to.be.equal(findLastName);
             expect(employeeFindByDepartment.department).to.be.equal(findDepartment);
         });
-    });
+    
         after(async () =>{
             await Employee.deleteMany();
         });
@@ -71,9 +71,6 @@ describe('Employee', () =>{
             const testEmployeeTwo = new Employee({firstName: 'next', lastName: 'employee', department: 'second'});
             await testEmployeeTwo.save();
         });
-        after(async () =>{
-            await Employee.deleteMany();
-        });
 
         it('should properly update one document with "updateOne" method', async () => {
             await Employee.updateOne({ firstName: 'New' }, { $set: { firstName: 'New update' }});
@@ -96,6 +93,9 @@ describe('Employee', () =>{
             expect(employees[0].firstName).to.be.equal('update');
             expect(employees[1].firstName).to.be.equal('update');
         }); 
+        after(async () =>{
+            await Employee.deleteMany();
+        });
     });
 
     describe('Removing data', ()=>{
@@ -105,10 +105,6 @@ describe('Employee', () =>{
 
             const testEmployeeTwo = new Employee({firstName: 'next', lastName: 'employee', department: 'second'});
             await testEmployeeTwo.save();
-        });
-
-        after(async () =>{
-            await Employee.deleteMany();
         });
 
         it('should properly remove one document with "deleteOne" method', async () => {
@@ -132,9 +128,12 @@ describe('Employee', () =>{
       
             expect(employees.length).to.be.equal(0);
         });
-        
-        after(() => {
-            mongoose.models = {};
+        after(async () =>{
+            await Employee.deleteMany();
         });
+        
+    });
+    after(() => {
+        mongoose.models = {};
     });
 });
